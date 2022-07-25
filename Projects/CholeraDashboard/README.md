@@ -8,3 +8,9 @@ The report is found on [Moses Gwaza Tableau Public](https://public.tableau.com/a
 ![alt img](https://github.com/M-Gwaza/Healthcare-Projects/blob/main/Projects/CholeraDashboard/Dashboard.png)
 
 
+## OBSERVATIONS
+   
+   1. There has been an increase in slope from April to May indicating when the Cholera outbreak took place.
+   2. The age group that was mainly affected were the youth.
+   3. Besides through contact, the main causes of Cholera were to do with food and water consumption.
+   4. The area that was mainly affected was Blantyre.
