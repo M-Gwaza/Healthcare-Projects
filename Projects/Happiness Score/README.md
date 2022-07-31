@@ -12,7 +12,7 @@
   4. Family
  
  ## The Dashboard
- [!alt img]()
+ ![alt img](https://github.com/M-Gwaza/Healthcare-Projects/blob/main/Projects/Happiness%20Score/Dashboard%202.png)
  
  ## Observations 
  
