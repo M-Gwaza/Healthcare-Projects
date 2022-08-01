@@ -2,6 +2,12 @@
 
 # Happiness Score
 
+## Criteria
+
+- Health-care (Mental illness)
+
+## Problem Statement
+
 - This is a Project exercise that was included in the Google Data Analytics Certification.
 - Basically the exercise involved collecting data around the world about what exactly makes people happy whilst comparing various factors
 - These factors include:
