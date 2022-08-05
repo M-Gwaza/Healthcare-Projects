@@ -4,7 +4,7 @@
 
 ## Criteria
 
-- Health-care (Mental illness)
+- Health-care
 
 ## Problem Statement
 
