@@ -38,6 +38,7 @@
 #### Dashboards Prepared
 
 1. Map of Sub-Saharan Africa showcasing Happiness Score
+![alt img](https://github.com/M-Gwaza/Healthcare-Projects/blob/main/Projects/Happiness%20Score/Sub-Saharan%20Map%20Dashboard.png)
 
 2. Happiness Score factors compared over time from 2015 - 2017
 ![alt img](https://github.com/M-Gwaza/Healthcare-Projects/blob/main/Projects/Happiness%20Score/Sub-Saharan%20Happiness%20Factors%20Dashboard.png)
