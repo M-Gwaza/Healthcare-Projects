@@ -30,3 +30,13 @@
 ## Note
 
 - Correlation does not really signify causation.
+
+## More areas of focus
+
+- Focus on Sub-Saharan Africa
+
+#### Dashboards Prepared
+
+1. Map of Sub-Saharan Africa showcasing Happiness Score
+
+2. Happiness Score factors compared over time from 2015 - 2017
