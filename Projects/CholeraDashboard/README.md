@@ -5,7 +5,7 @@ The report is found on [Moses Gwaza Tableau Public](https://public.tableau.com/a
 - This is an overview showcase of the Cholera outbreak hat occured in Malawi in 2022 with data extracts from February to July.
 - This data source was found on [Public Health Institute of Malawi Public Tableau](https://public.tableau.com/app/profile/phimcholeradashboard) 
 
-![alt img](https://github.com/M-Gwaza/Healthcare-Projects/blob/main/Projects/CholeraDashboard/Dashboard.PNG)
+![alt img](https://github.com/M-Gwaza/Healthcare-Projects/blob/main/Projects/CholeraDashboard/Dashboard.png)
 
 
 ## OBSERVATIONS
