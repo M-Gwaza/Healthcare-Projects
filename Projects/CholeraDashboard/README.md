@@ -11,7 +11,8 @@ The report is found on [Moses Gwaza Tableau Public](https://public.tableau.com/a
 ## OBSERVATIONS
    
    1. There has been an increase in slope from April to May indicating when the Cholera outbreak took place.
-      - But luckily, the total cases number started declining from May showing that the appropriate preventative measures were being followed
+      - But luckily, the total cases number started declining from May to July showing that the appropriate preventative measures were being followed
+      - However, there has been a spike in the numbers from July to August showing that another outbreak took place
    2. The age group that was mainly affected were the youth.
-   3. Besides through contact, the main causes of Cholera were to do with food and water consumption.
-   4. The area that was mainly affected was Blantyre.
+   3. The main causes of Cholera were to do with food and water consumption.
+   4. The area that was mainly affected was Blantyre during this time.
