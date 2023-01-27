@@ -1,0 +1,209 @@
+---
+title: "COVID 19 Data Insights from Jan 2020 - Nov 2022"
+output: 
+  flexdashboard::flex_dashboard:
+    vertical_layout: scroll
+    theme: yeti
+---
+
+```{r setup, include=FALSE}
+# Importing libraries
+library(flexdashboard)
+library(tidyverse)
+library(highcharter)
+library(gt)
+library(htmltools)
+library(viridis)
+```
+
+```{r}
+# Importing data
+who <- read_csv('C:/Users/moses.gwaza/Downloads/WHO-COVID-19-global-data.csv')
+
+# Replace null values 'Namibia' with 'NA'
+who$Country_code[is.na(who$Country_code)] <- 'NA'
+```
+
+
+
+Countries {data-orientation=rows}
+=======================================================================
+
+## Row 1 {data-height=100}
+
+Column {.tabset .tabset-fade data-width=650}
+-----------------------------------------------------------------------
+
+### Top Countries with cases {data-height=600}
+
+```{r fig.height=5}
+# Colors
+custom_colors <- viridis::mako(n = 15)
+
+# Top countries with new cases
+who %>% 
+  group_by(Country) %>% 
+  summarise(Cases = sum(New_cases)) %>% 
+  arrange(desc(Cases)) %>% 
+  head(15) %>% 
+  hchart('column', hcaes(x = Country, y = Cases,color = custom_colors)) %>%   hc_add_theme(hc_theme_google()) %>% 
+  hc_tooltip(pointFormat = '<b>Number of new cases: </b> {point.y} <br>') %>% 
+  hc_title(text = 'Top Countries Count',
+           style = list(fontSize = '25px', fontWeight = 'bold')) %>% 
+  hc_subtitle(text = 'By Number of New Cases',
+              style = list(fontSize = '16px')) %>% 
+  hc_credits(enabled = TRUE, text = '@mosesgwaza')
+  
+
+```
+
+### Top Countries with deaths {data-height=600}
+
+```{r fig.height=5}
+# Colors
+custom_colors <- viridis::plasma(n = 15)
+
+# Top Countries by death
+who %>% 
+  group_by(Country) %>% 
+  summarise(Deaths = sum(New_deaths)) %>% 
+  arrange(desc(Deaths)) %>% 
+  head(15) %>% 
+  hchart('bar', hcaes(x = Country, y = Deaths, color = custom_colors)) %>% 
+  hc_add_theme(hc_theme_google()) %>% 
+  hc_tooltip(pointFormat = '<b>Number of new deaths: </b> {point.y} <br>') %>% 
+  hc_title(text = 'Top Countries Count',
+           style = list(fontSize = '25px', fontWeight = 'bold')) %>% 
+  hc_subtitle(text = 'By Number of New Deaths',
+              style = list(fontSize = '16px')) %>% 
+  hc_credits(enabled = TRUE, text = '@mosesgwaza')
+```
+## Row  {data-height=120}
+
+### <font size='3'>**https://github.com/M-Gwaza/Python-Projects/blob/main/WHO-COVID-19-global-data.ipynb**  </font> 
+
+```{r}
+valueBox('Full Project', '', color = 'white' )
+```
+
+### {.no-padding}
+
+```{r fig.width=1}
+valueBox('', icon = "fa-github", color="white")
+```
+
+## Row 2 {data-height=10}
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### {.no-padding data-height=350}
+
+```{r}
+# Colors
+custom_colors <- viridis::turbo(n = 10)
+
+who %>% 
+  filter(WHO_region == 'AFRO') %>%
+  group_by(Country) %>% 
+  summarise(Cases = sum(New_cases)) %>% 
+  arrange(desc(Cases)) %>%
+  head(10) %>% 
+  arrange(Cases) %>%
+  hchart('pie', hcaes(x = Country, y = Cases, color = custom_colors)) %>% 
+  hc_add_theme(hc_theme_google()) %>% 
+  hc_tooltip(pointFormat='<b>Proportion: </b> {point.percentage:,.2f}%') %>% 
+  hc_title(text = 'Top African Countries with Highest Cases',
+           style = list(fontSize = '15px', fontWeight = 'bold')) %>% 
+  hc_credits(enabled = TRUE, text = '@mosesgwaza')
+```
+
+### {.no-padding data-height=350}
+
+```{r}
+# This is going to be a datatable
+df1  <- who %>% 
+  filter(WHO_region == 'AFRO') %>%
+  group_by(Country) %>% 
+  summarise(Deaths = sum(New_deaths)) %>% 
+  arrange(desc(Deaths)) %>%
+  head(35) 
+
+
+# HTML table
+div(style = 'height:600px; overflow-y:scroll', gt(df1) %>% 
+      tab_header(title = md('Top African Countries'),
+                 subtitle = md('By New Deaths')) %>% 
+      opt_table_font(font = list(google_font('Chivo'), default_fonts())) %>% 
+      tab_style(location = cells_column_labels(columns = everything()),
+                style = list(cell_borders(sides = 'bottom', 
+                                          weight = px(2)), 
+                             cell_text(weight = 'bold'))) %>% 
+      tab_options(table.font.size = px(12L),
+                  table.border.top.style = 'none',
+                  column_labels.border.bottom.width = 2,
+                  table_body.border.top.style = 'none',
+                  data_row.padding = px(3),
+                  table.width   = 650)
+    )
+
+
+```
+
+
+
+
+Regions {data-orientation=rows}
+=======================================================================
+
+## Row 1 {data-height=100}
+-----------------------------------------------------------------------
+
+## Row 2 {data-height=600}
+-----------------------------------------------------------------------
+
+### Cumulative cases per Region {data-width=500 data-height=600}
+
+```{r fig.height=5}
+# Colors
+custom_colors <- viridis::mako(n = 7)
+
+# Top Countries with Cumulative deaths
+who %>% 
+  group_by(WHO_region) %>% 
+  summarise(Cumulative_cases = sum(Cumulative_cases)) %>% 
+  arrange(desc(Cumulative_cases)) %>% 
+  head(20) %>% 
+  hchart('lollipop', hcaes(x = WHO_region, y = Cumulative_cases, color = custom_colors)) %>% 
+  hc_add_theme(hc_theme_google()) %>% 
+  hc_tooltip(pointFormat = '<b>Total Cumulative cases: </b> {point.y} <br>') %>% 
+  hc_yAxis(title = list(text = 'Total Cumulative cases')) %>% 
+  hc_xAxis(title = list(text = 'Countries')) %>% 
+  hc_title(text = 'Cumulative cases distribution',
+           style = list(fontSize = '25px', fontWeight = 'bold')) %>% 
+  hc_subtitle(text = 'By WHO Region',
+              style = list(fontSize = '16px')) %>% 
+  hc_credits(enabled = TRUE, text = '@mosesgwaza')
+```
+
+
+### Cumulative deaths per Region {data-width=500 data-height=600}
+
+```{r fig.height=5}
+# Colors
+custom_colors <- viridis::mako(n = 7)
+
+# Cumulative deaths per Region
+who %>% 
+  group_by(WHO_region) %>% 
+  summarise(Cumulative_deaths = sum(Cumulative_deaths)) %>% 
+  arrange(desc(Cumulative_deaths)) %>% 
+  hchart('pie', hcaes(x = WHO_region, y = Cumulative_deaths, color = custom_colors)) %>% 
+  hc_add_theme(hc_theme_google()) %>% 
+  hc_tooltip(pointFormat = '<b>Total Cumulative deaths: </b> {point.y} <br>') %>% 
+  hc_title(text = 'Cumulative deaths distribution',
+           style = list(fontSize = '25px', fontWeight = 'bold')) %>% 
+  hc_subtitle(text = 'By WHO Region',
+              style = list(fontSize = '16px')) %>% 
+  hc_credits(enabled = TRUE, text = '@mosesgwaza')
+```
